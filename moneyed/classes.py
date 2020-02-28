@@ -484,3 +484,5 @@ ZMW = add_currency('ZMW', '967', 'Zambian Kwacha', ['ZAMBIA'])
 ZWD = add_currency('ZWD', '716', 'Zimbabwe Dollar A/06', ['ZIMBABWE'])
 ZWL = add_currency('ZWL', '932', 'Zimbabwe dollar A/09', ['ZIMBABWE'])
 ZWN = add_currency('ZWN', '942', 'Zimbabwe dollar A/08', ['ZIMBABWE'])
+
+CURRENCIES['₽'] = RUB
