@@ -12,12 +12,12 @@ class CurrencyFormatter(object):
     sign_definitions = {}
     formatting_definitions = {}
 
-    def add_sign_definition(self, locale, currency, prefix='', suffix=''):
+    def add_sign_definition(self, locale, currency, prefix='', suffix='', decimal_places=2):
         locale = locale.upper()
         currency_code = currency.code.upper()
         if locale not in self.sign_definitions:
             self.sign_definitions[locale] = {}
-        self.sign_definitions[locale][currency_code] = (prefix, suffix)
+        self.sign_definitions[locale][currency_code] = (prefix, suffix, decimal_places)
 
     def add_formatting_definition(self, locale, group_size,
                                   group_separator, decimal_point,
@@ -58,7 +58,7 @@ class CurrencyFormatter(object):
                decimal_places=None, rounding_method=None):
         locale = locale.upper()
         code = money.currency.code.upper()
-        prefix, suffix = self.get_sign_definition(code, locale)
+        prefix, suffix, decimal_places_ = self.get_sign_definition(code, locale)
         formatting = self.get_formatting_definition(locale)
 
         if rounding_method is None:
@@ -66,7 +66,7 @@ class CurrencyFormatter(object):
 
         if decimal_places is None:
             # TODO: Use individual defaults for each currency
-            decimal_places = 2
+            decimal_places = decimal_places_
 
         q = Decimal(10) ** -decimal_places  # 2 places --> '0.01'
         quantized = money.amount.quantize(q, rounding_method)
@@ -329,7 +329,7 @@ _sign(DEFAULT, moneyed.PLN, suffix=' zł')
 _sign(DEFAULT, moneyed.PYG, prefix='₲')
 _sign(DEFAULT, moneyed.QAR, prefix='ر.ق')
 _sign(DEFAULT, moneyed.RSD, prefix='RSD ')
-_sign(DEFAULT, moneyed.RUB, suffix='₽')
+_sign(DEFAULT, moneyed.RUB, suffix='₽', decimal_places=0)
 _sign(DEFAULT, moneyed.RWF, prefix='FRw')
 _sign(DEFAULT, moneyed.SAR, prefix='ر.س')
 _sign(DEFAULT, moneyed.SBD, prefix='SI$')
