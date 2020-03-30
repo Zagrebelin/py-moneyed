@@ -156,6 +156,16 @@ class TestMoney:
         assert format_money(self.one_million_bucks, locale='fr_CA') == '1 000 000,00 $ US'
         assert format_money(one_million_eur, locale='fr_CA') == '1 000 000,00 €'
 
+    def test_format_money_by(self):
+        assert format_money(Money('10', 'BYN'), locale='ru_RU') == '10,00 руб.'
+        assert format_money(Money('10.15', 'BYN'), locale='ru_RU') == '10,15 руб.'
+        assert format_money(Money('1234.56', 'BYN'), locale='ru_RU') == '1 234,56 руб.'
+
+    def test_format_money_ru(self):
+        assert format_money(Money('10', 'RUB'),  locale='ru_RU') == '10₽'
+        assert format_money(Money('1234', 'RUB'),  locale='ru_RU') == '1 234₽'
+
+
     def test_add(self):
         assert (self.one_million_bucks + self.one_million_bucks ==
                 Money(amount='2000000', currency=self.USD))

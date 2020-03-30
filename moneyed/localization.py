@@ -200,6 +200,11 @@ _format("nn_NO", group_size=3, group_separator=" ", decimal_point=",",
         negative_sign="-", trailing_negative_sign="",
         rounding_method=ROUND_HALF_EVEN)
 
+_format('ru_RU', group_size=3, group_separator=' ', decimal_point=',',
+        positive_sign='', trailing_positive_sign='',
+        negative_sign='', trailing_negative_sign='',
+        rounding_method=ROUND_HALF_EVEN)
+
 # CURRENCY SIGNS
 # Default currency signs. These can be overridden for locales where
 # foreign or local currency signs for one reason or another differ
@@ -404,3 +409,6 @@ _sign('en_US', moneyed.TND, prefix='DT')
 _sign('en_US', moneyed.AED, prefix='Dhs')
 _sign('en_US', moneyed.EGP, prefix='L.E.')
 _sign('en_US', moneyed.QAR, prefix='QR')
+
+_sign('ru_RU', moneyed.BYN, suffix=' руб.')
+_sign('ru_BY', moneyed.BYN, suffix=' руб.')
